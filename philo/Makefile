@@ -5,28 +5,27 @@
 #                                                     +:+ +:+         +:+      #
 #    By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/12 09:53:42 by melmehdi          #+#    #+#              #
-#    Updated: 2024/08/14 12:23:35 by melmehdi         ###   ########.fr        #
+#    Created: 2024/08/27 14:11:23 by melmehdi          #+#    #+#              #
+#    Updated: 2024/09/12 16:32:52 by melmehdi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
-SRCS = philo.c philo_utils.c philo_manager.c philo_lifecycle.c syntax.c
-NAME = philo
-CC = cc
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread
+
+MAINSRCS = $(addprefix ./src/, main.c init_philo.c start_routine.c actions.c start_routine_utils.c lock.c parse_args.c)
+UTILSSRCS = $(addprefix ./src/utils/libft/, ft_atoi.c  ft_putstr_fd.c ft_strlen.c ft_isdigit.c)
+
+SRCS = $(MAINSRCS) $(UTILSSRCS)
 OBJS = $(SRCS:.c=.o)
+NAME = philo
 
-all: $(NAME)
+all : $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+$(NAME) : $(OBJS)
+	cc $(CFLAGS) $(OBJS) -o $(NAME) -lpthread
 
-clean:
+clean :
 	rm -f $(OBJS)
-
-fclean: clean
+fclean : clean
 	rm -f $(NAME)
-
-re: fclean all
-
-.PHONY: all clean fclean re
+re : fclean all
