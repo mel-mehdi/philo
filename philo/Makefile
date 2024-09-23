@@ -1,31 +1,25 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/27 14:11:23 by melmehdi          #+#    #+#              #
-#    Updated: 2024/09/12 16:32:52 by melmehdi         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread
-
-MAINSRCS = $(addprefix ./src/, main.c init_philo.c start_routine.c actions.c start_routine_utils.c lock.c parse_args.c)
-UTILSSRCS = $(addprefix ./src/utils/libft/, ft_atoi.c  ft_putstr_fd.c ft_strlen.c ft_isdigit.c)
-
-SRCS = $(MAINSRCS) $(UTILSSRCS)
-OBJS = $(SRCS:.c=.o)
 NAME = philo
+FLAGS =  -g -Wall -Wextra -Werror -pthread #-fsanitize=thread
+SRC =  philo.c utils.c utils1.c init.c routine.c monitor.c 
 
-all : $(NAME)
+OBJ = $(SRC:.c=.o)
 
-$(NAME) : $(OBJS)
-	cc $(CFLAGS) $(OBJS) -o $(NAME) -lpthread
+all: $(NAME)
 
-clean :
-	rm -f $(OBJS)
-fclean : clean
-	rm -f $(NAME)
-re : fclean all
+$(NAME): $(OBJ)
+	@cc $(FLAGS) $(OBJ) -o $(NAME)
+
+%.o: %.c
+	@cc $(FLAGS) -c $< -o $@
+
+clean:
+	@rm -rf $(OBJ)
+	@rm -rf *.o
+
+fclean: clean
+	@rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
+.SECONDARY: $(OBJ)
