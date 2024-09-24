@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 10:00:00 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/20 12:10:04 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:43:39 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int		_isdigit(char c);
 bool	is_digit(char **av);
 long	get_time(void);
 void	print(t_philo *philo, char *s);
-int		ft_usleep(size_t milliseconds);
+int		ft_usleep(size_t milliseconds, t_philo *philo);
+// int		ft_usleep(size_t milliseconds);
 
 // init functions
 bool	init_args(t_args *args, char **av, int ac);

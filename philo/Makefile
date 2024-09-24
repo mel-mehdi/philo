@@ -1,6 +1,6 @@
 NAME = philo
-FLAGS =  -g -Wall -Wextra -Werror -pthread #-fsanitize=thread
-SRC =  philo.c utils.c utils1.c init.c routine.c monitor.c 
+FLAGS =  -g -Wall -Wextra -Werror -pthread -fsanitize=thread
+SRC =  philo.c utils.c init.c routine.c monitor.c 
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 12:21:34 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/20 12:22:06 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/23 09:32:23 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ bool	init_args(t_args *args, char **av, int ac)
 		args->philos_eat_times = _atoi(av[5]);
 	else
 		args->philos_eat_times = -1;
-	// if ( _atoi(av[2]) > INT_MAX || _atoi(av[3]) > INT_MAX || \
-	// _atoi(av[4]) > INT_MAX || (_atoi(av[5]) > INT_MAX ))
-	// 	return (exit_error("Not valid int"));
 	return (true);
 }
 

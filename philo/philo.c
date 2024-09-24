@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 12:28:33 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/20 12:09:58 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/23 16:39:05 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,22 @@ bool	exit_error(char *s)
 	return (false);
 }
 
-int	ft_usleep(size_t milliseconds)
+int	ft_usleep(size_t milliseconds, t_philo *philo)
 {
 	size_t	start;
 
 	start = get_time();
 	while ((get_time() - start) < milliseconds)
-		usleep(500);
+	{
+		pthread_mutex_lock(philo->dead_lock);
+		if (*philo->dead == 1)
+		{
+			pthread_mutex_unlock(philo->dead_lock);
+			break ;
+		}
+		pthread_mutex_unlock(philo->dead_lock);
+		usleep(100);
+	}
 	return (0);
 }
 
