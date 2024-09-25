@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 12:28:33 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/23 16:39:05 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:53:36 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_usleep(size_t milliseconds, t_philo *philo)
 			break ;
 		}
 		pthread_mutex_unlock(philo->dead_lock);
-		usleep(100);
+		usleep(50);
 	}
 	return (0);
 }
