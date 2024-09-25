@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:17:22 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/25 14:51:32 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:41:08 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ int take_forks(t_philo *philo)
     if (philo->r_fork < philo->l_fork)
     {
         pthread_mutex_lock(philo->r_fork);
-		print(philo, "has taken a fork");
+        print(philo, "has taken a fork");
         if (philo->philos_num == 1)
         {
             ft_usleep(philo->phil_death_time, philo);
             pthread_mutex_unlock(philo->r_fork);
-            return 0;
+            return 1;
         }
         pthread_mutex_lock(philo->l_fork);
     }
@@ -78,17 +78,17 @@ int take_forks(t_philo *philo)
         {
             ft_usleep(philo->phil_death_time, philo);
             pthread_mutex_unlock(philo->l_fork);
-            return -1;
+            return 1;
         }
         pthread_mutex_lock(philo->r_fork);
     }
-	return 0;
+    return 0;
 }
 
 void eating(t_philo *philo)
 {
    	if (take_forks(philo))
-   		return;
+   		return ;
     philo->eating = 1;
     print(philo, "is eating");
     pthread_mutex_lock(philo->meal_lock);
