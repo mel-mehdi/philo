@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 11:17:22 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/25 12:50:10 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:51:32 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int take_forks(t_philo *philo)
 
 void eating(t_philo *philo)
 {
-   	if(take_forks(philo))
+   	if (take_forks(philo))
    		return;
     philo->eating = 1;
     print(philo, "is eating");

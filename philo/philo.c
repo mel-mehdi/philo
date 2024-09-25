@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 12:28:33 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/25 12:53:36 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:19:58 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_usleep(size_t milliseconds, t_philo *philo)
 			break ;
 		}
 		pthread_mutex_unlock(philo->dead_lock);
-		usleep(50);
+		// usleep(100);
 	}
 	return (0);
 }
@@ -54,10 +54,10 @@ void	init_prog(t_philo *philos, t_prog *prog)
 
 int	main(int ac, char **av)
 {
-	t_args			args;
-	t_philo			philos[PHILOS_MAX];
-	t_prog			prog;
 	pthread_mutex_t	forks[PHILOS_MAX];
+	t_philo			philos[PHILOS_MAX];
+	t_args			args;
+	t_prog			prog;
 
 	if (!(ac == 5 || ac == 6))
 		return (error());
