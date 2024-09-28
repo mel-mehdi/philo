@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:21:13 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/28 13:26:05 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:11:16 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	philo_dead(t_philo *philo, size_t dead_time)
 {
 	pthread_mutex_lock(philo->meal_lock);
 	if (get_time() - philo->last_meal >= dead_time && philo->eating == 0)
-		return ((pthread_mutex_unlock(philo->meal_lock)), 1);
+	{
+		pthread_mutex_unlock(philo->meal_lock);
+		return (1);
+	}
 	pthread_mutex_unlock(philo->meal_lock);
 	return (0);
 }
@@ -41,19 +44,18 @@ int	check_death(t_philo *philos)
 {
 	int	i;
 
-	pthread_mutex_lock(philos->dead_lock);
 	i = -1;
 	while (philos && ++i < philos[0].philos_num)
 	{
 		if (philo_dead(&philos[i], philos[i].phil_death_time) == 1)
 		{
 			print(&philos[i], "\033[0;31mdied\033[0;31m");
+			pthread_mutex_lock(philos->dead_lock);
 			*philos->dead = 1;
 			pthread_mutex_unlock(philos->dead_lock);
 			return (1);
 		}
 	}
-	pthread_mutex_unlock(philos->dead_lock);
 	return (0);
 }
 
