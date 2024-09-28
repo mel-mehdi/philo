@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 10:00:00 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/23 09:43:39 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/28 13:19:56 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
 int		dead_monitor(t_philo *philo);
 void	*philo_life(void *philo);
-void	takeforks(t_philo *philo);
 
 // monitor functions
 void	*monitor(void *pointer);

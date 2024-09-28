@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:21:13 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/25 15:14:43 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/28 13:26:05 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,19 @@ int	check_death(t_philo *philos)
 {
 	int	i;
 
+	pthread_mutex_lock(philos->dead_lock);
 	i = -1;
 	while (philos && ++i < philos[0].philos_num)
 	{
 		if (philo_dead(&philos[i], philos[i].phil_death_time) == 1)
 		{
 			print(&philos[i], "\033[0;31mdied\033[0;31m");
-			pthread_mutex_lock(philos->dead_lock);
 			*philos->dead = 1;
 			pthread_mutex_unlock(philos->dead_lock);
 			return (1);
 		}
 	}
+	pthread_mutex_unlock(philos->dead_lock);
 	return (0);
 }
 
