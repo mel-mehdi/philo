@@ -6,7 +6,7 @@
 /*   By: melmehdi <melmehdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 10:00:00 by melmehdi          #+#    #+#             */
-/*   Updated: 2024/09/28 16:22:22 by melmehdi         ###   ########.fr       */
+/*   Updated: 2024/09/29 10:29:53 by melmehdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,21 +74,16 @@ typedef struct s_args
 	size_t	philos_eat_times;
 }	t_args;
 
-// philo.c functions
 bool	exit_error(char *s);
 int		error(void);
 void	init_prog(t_philo *philos, t_prog *prog);
-
-// utils.c functions
-long		_atoi(char *s);
+long	_atoi(char *s);
 int		_isdigit(char c);
 bool	is_digit(char **av);
 long	get_time(void);
 void	print(t_philo *philo, char *s);
 int		ft_usleep(size_t milliseconds, t_philo *philo);
-// int		ft_usleep(size_t milliseconds);
-
-// init functions
+void	sleeping(t_philo *philo);
 bool	init_args(t_args *args, char **av, int ac);
 bool	init_philos(t_args *args, t_philo *philos,
 			t_prog *prog, pthread_mutex_t *forks);
@@ -96,15 +91,11 @@ void	init_forks(pthread_mutex_t *forks, int philo_num);
 int		init_thread(t_philo *philos, pthread_mutex_t *forks, t_prog *prog);
 void	helper(int i, t_philo *philos, t_args *args, pthread_mutex_t *forks);
 void	init_prog(t_philo *philos, t_prog *prog);
-// routine functions
-
 void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
 int		dead_monitor(t_philo *philo);
 void	*philo_life(void *philo);
-
-// monitor functions
 void	*monitor(void *pointer);
 int		eat_times(t_philo *philo);
 int		check_death(t_philo *philos);
@@ -112,4 +103,4 @@ int		philo_dead(t_philo *philo, size_t dead_time);
 int		destroy_all(char *mssg, t_prog *prog,
 			pthread_mutex_t *forks, t_philo *philo);
 
-#endif // PHILO_H
+#endif
